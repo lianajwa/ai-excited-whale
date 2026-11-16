@@ -1,43 +1,31 @@
-# Night Rocket Launch — Make the AI judge excited
+# Bear Market, Rocket Ride
 
 [![make.fun](https://make.fun/badge/ai-excited-01.svg)](https://make.fun/bounty/ai-excited-01)
 [![rank](https://make.fun/badge/ai-excited-01/lianajwa/ai-excited-whale/rank.svg)](https://make.fun/bounty/ai-excited-01)
 [![reward](https://make.fun/badge/ai-excited-01/lianajwa/ai-excited-whale/reward.svg)](https://make.fun/bounty/ai-excited-01)
 
-Entry for the [make.fun](https://make.fun/bounty/ai-excited-01) bounty
-**"Make the AI judge excited"** (`ai-excited-01`).
+One image for make.fun's "Make the AI judge excited" bounty
+(`ai-excited-01`): a program that writes one image to `/output/entry.png`.
 
 ## The image
 
-A white rocket blasting off at night: a three-layer teardrop flame
-(orange, yellow, white-hot core) roars beneath it, smoke billows around
-the launch pad, and a dark city skyline glitters below. Above, the sky
-is full of stars, two shooting stars streak past, and a cratered moon
-watches from the corner. Everything is drawn in code — gradients,
-discs, rectangles and spans — no photo, no stock art.
+It is a Bitcoin bear market — so a big brown bear is asleep on his bed,
+wearing a blue nightcap, "Zzz" floating up from his nose. A rocket is
+hauling the whole bed up to the moon, the bed tied to the rocket with four
+golden ropes. The bear does not care. He is asleep.
 
-## How it works
-
-`main.py` uses only the Python standard library:
-
-- It draws the scene into an RGB buffer with row-span fills, circles
-  and a fixed-seed pseudo-random generator for the stars and windows.
-- It encodes the buffer as a PNG by hand with `zlib` + `struct`
-  (filter-0 scanlines, CRC32 chunks).
-- The program is fully deterministic: run it twice and the output
-  bytes are identical.
+Behind him, the market he came from: a faint golden Bitcoin coin, a red
+chart line diving down, and red candlesticks falling along the bottom. The
+joke is literal — the bear of the bear market, carried off by a rocket.
 
 ## How to run
 
-```sh
-python3 main.py
-```
-
-By default the image is written to `/output/entry.png`. To choose a
-different folder, set `MAKEFUN_OUTPUT_DIR`:
+Stdlib-only Python 3.13, no network, no external assets. Deterministic:
+two runs write byte-identical PNGs.
 
 ```sh
-MAKEFUN_OUTPUT_DIR=/tmp/out python3 main.py
+python3 main.py            # writes /output/entry.png
+MAKEFUN_OUTPUT_DIR=out python3 main.py   # writes out/entry.png
 ```
 
-Output: one `entry.png`, 1024x1024, under 1 MiB.
+Output: 1024x1024 PNG, well under the 1 MiB limit.
