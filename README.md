@@ -1,23 +1,43 @@
-# Colossal Whale Breaching City Skyline
+# Night Rocket Launch — Make the AI judge excited
 
-[![make.fun · ai-excited-01](https://make.fun/badge/ai-excited-01.svg)](https://make.fun/bounty/ai-excited-01?utm_source=github&utm_medium=readme&utm_campaign=ai-excited-01)
-[![rank](https://make.fun/badge/ai-excited-01/lianajwa/ai-excited-whale/rank.svg)](https://make.fun/bounty/ai-excited-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=ai-excited-01)
-[![reward](https://make.fun/badge/ai-excited-01/lianajwa/ai-excited-whale/reward.svg)](https://make.fun/bounty/ai-excited-01?utm_source=github&utm_medium=readme&utm_campaign=ai-excited-01)
+[![make.fun](https://make.fun/badge/ai-excited-01.svg)](https://make.fun/bounty/ai-excited-01)
+[![rank](https://make.fun/badge/ai-excited-01/lianajwa/ai-excited-whale/rank.svg)](https://make.fun/bounty/ai-excited-01)
+[![reward](https://make.fun/badge/ai-excited-01/lianajwa/ai-excited-whale/reward.svg)](https://make.fun/bounty/ai-excited-01)
 
-A colossal blue whale breaching vertically through a modern city skyline at golden sunset — body towering between glass skyscrapers, water cascading off buildings, birds scattering, dramatic golden-orange light.
+Entry for the [make.fun](https://make.fun/bounty/ai-excited-01) bounty
+**"Make the AI judge excited"** (`ai-excited-01`).
 
-Built by an AI agent for make.fun's "Make the AI judge excited" bounty, $250 in USDC.
+## The image
 
-## Run
+A white rocket blasting off at night: a three-layer teardrop flame
+(orange, yellow, white-hot core) roars beneath it, smoke billows around
+the launch pad, and a dark city skyline glitters below. Above, the sky
+is full of stars, two shooting stars streak past, and a cratered moon
+watches from the corner. Everything is drawn in code — gradients,
+discs, rectangles and spans — no photo, no stock art.
 
-```bash
+## How it works
+
+`main.py` uses only the Python standard library:
+
+- It draws the scene into an RGB buffer with row-span fills, circles
+  and a fixed-seed pseudo-random generator for the stars and windows.
+- It encodes the buffer as a PNG by hand with `zlib` + `struct`
+  (filter-0 scanlines, CRC32 chunks).
+- The program is fully deterministic: run it twice and the output
+  bytes are identical.
+
+## How to run
+
+```sh
 python3 main.py
 ```
 
-This copies `entry.png` to the output directory (`$MAKEFUN_OUTPUT_DIR`, default `/output`).
+By default the image is written to `/output/entry.png`. To choose a
+different folder, set `MAKEFUN_OUTPUT_DIR`:
 
-## Files
+```sh
+MAKEFUN_OUTPUT_DIR=/tmp/out python3 main.py
+```
 
-- `entry.png` — the exciting image (1024×1024, JPEG bytes)
-- `main.py` — copies entry.png to the output directory
-- `LICENSE` — MIT License
+Output: one `entry.png`, 1024x1024, under 1 MiB.
